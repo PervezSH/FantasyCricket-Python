@@ -9,7 +9,7 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-
+import sqlite3
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -23,6 +23,7 @@ class Ui_MainWindow(object):
         MainWindow.setFont(font)
         MainWindow.setAutoFillBackground(False)
         MainWindow.setStyleSheet("")
+        #Central Widget
         self.main_centralwidget = QtWidgets.QWidget(MainWindow)
         self.main_centralwidget.setEnabled(False)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
@@ -31,13 +32,16 @@ class Ui_MainWindow(object):
         sizePolicy.setHeightForWidth(self.main_centralwidget.sizePolicy().hasHeightForWidth())
         self.main_centralwidget.setSizePolicy(sizePolicy)
         self.main_centralwidget.setObjectName("main_centralwidget")
+        #Horizontal Layout
         self.horizontalLayout_3 = QtWidgets.QHBoxLayout(self.main_centralwidget)
         self.horizontalLayout_3.setObjectName("horizontalLayout_3")
         spacerItem = QtWidgets.QSpacerItem(36, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.horizontalLayout_3.addItem(spacerItem)
+        #Vertical Layout
         self.TopverticalLayout = QtWidgets.QVBoxLayout()
         self.TopverticalLayout.setSizeConstraint(QtWidgets.QLayout.SetDefaultConstraint)
         self.TopverticalLayout.setObjectName("TopverticalLayout")
+        #Your Selction Group Box
         self.yourSelctionGroupBox = QtWidgets.QGroupBox(self.main_centralwidget)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
@@ -56,6 +60,7 @@ class Ui_MainWindow(object):
         self.yourSelctionGroupBox.setObjectName("yourSelctionGroupBox")
         self.horizontalLayout_2 = QtWidgets.QHBoxLayout(self.yourSelctionGroupBox)
         self.horizontalLayout_2.setObjectName("horizontalLayout_2")
+
         self.batsmen_textLabel = QtWidgets.QLabel(self.yourSelctionGroupBox)
         font = QtGui.QFont()
         font.setBold(True)
@@ -64,11 +69,13 @@ class Ui_MainWindow(object):
         self.batsmen_textLabel.setAlignment(QtCore.Qt.AlignCenter)
         self.batsmen_textLabel.setObjectName("batsmen_textLabel")
         self.horizontalLayout_2.addWidget(self.batsmen_textLabel)
+
         self.batsmen_noLabel = QtWidgets.QLabel(self.yourSelctionGroupBox)
         self.batsmen_noLabel.setStyleSheet("color : rgb(0, 85, 255)")
         self.batsmen_noLabel.setAlignment(QtCore.Qt.AlignCenter)
         self.batsmen_noLabel.setObjectName("batsmen_noLabel")
         self.horizontalLayout_2.addWidget(self.batsmen_noLabel)
+
         self.bowler_textLabel = QtWidgets.QLabel(self.yourSelctionGroupBox)
         font = QtGui.QFont()
         font.setBold(True)
@@ -77,11 +84,13 @@ class Ui_MainWindow(object):
         self.bowler_textLabel.setAlignment(QtCore.Qt.AlignCenter)
         self.bowler_textLabel.setObjectName("bowler_textLabel")
         self.horizontalLayout_2.addWidget(self.bowler_textLabel)
+
         self.bowler_noLabel = QtWidgets.QLabel(self.yourSelctionGroupBox)
         self.bowler_noLabel.setStyleSheet("color : rgb(0, 85, 255)")
         self.bowler_noLabel.setAlignment(QtCore.Qt.AlignCenter)
         self.bowler_noLabel.setObjectName("bowler_noLabel")
         self.horizontalLayout_2.addWidget(self.bowler_noLabel)
+
         self.allrounder_textLabel = QtWidgets.QLabel(self.yourSelctionGroupBox)
         font = QtGui.QFont()
         font.setBold(True)
@@ -90,11 +99,13 @@ class Ui_MainWindow(object):
         self.allrounder_textLabel.setAlignment(QtCore.Qt.AlignCenter)
         self.allrounder_textLabel.setObjectName("allrounder_textLabel")
         self.horizontalLayout_2.addWidget(self.allrounder_textLabel)
+
         self.allrounder_noLabel = QtWidgets.QLabel(self.yourSelctionGroupBox)
         self.allrounder_noLabel.setStyleSheet("color : rgb(0, 85, 255)")
         self.allrounder_noLabel.setAlignment(QtCore.Qt.AlignCenter)
         self.allrounder_noLabel.setObjectName("allrounder_noLabel")
         self.horizontalLayout_2.addWidget(self.allrounder_noLabel)
+
         self.wicketkeeper_textLabel = QtWidgets.QLabel(self.yourSelctionGroupBox)
         font = QtGui.QFont()
         font.setBold(True)
@@ -103,11 +114,13 @@ class Ui_MainWindow(object):
         self.wicketkeeper_textLabel.setAlignment(QtCore.Qt.AlignCenter)
         self.wicketkeeper_textLabel.setObjectName("wicketkeeper_textLabel")
         self.horizontalLayout_2.addWidget(self.wicketkeeper_textLabel)
+
         self.wicketkeeper_noLabel = QtWidgets.QLabel(self.yourSelctionGroupBox)
         self.wicketkeeper_noLabel.setStyleSheet("color : rgb(0, 85, 255)")
         self.wicketkeeper_noLabel.setAlignment(QtCore.Qt.AlignCenter)
         self.wicketkeeper_noLabel.setObjectName("wicketkeeper_noLabel")
         self.horizontalLayout_2.addWidget(self.wicketkeeper_noLabel)
+        #Point Group Box
         self.TopverticalLayout.addWidget(self.yourSelctionGroupBox)
         self.PointsGroupBox = QtWidgets.QGroupBox(self.main_centralwidget)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
@@ -118,6 +131,7 @@ class Ui_MainWindow(object):
         self.PointsGroupBox.setObjectName("PointsGroupBox")
         self.PointsDisplayLayout = QtWidgets.QHBoxLayout(self.PointsGroupBox)
         self.PointsDisplayLayout.setObjectName("PointsDisplayLayout")
+
         self.pointAvailable_textlabel = QtWidgets.QLabel(self.PointsGroupBox)
         font = QtGui.QFont()
         font.setBold(True)
@@ -125,6 +139,7 @@ class Ui_MainWindow(object):
         self.pointAvailable_textlabel.setFont(font)
         self.pointAvailable_textlabel.setObjectName("pointAvailable_textlabel")
         self.PointsDisplayLayout.addWidget(self.pointAvailable_textlabel)
+
         self.batsmen_noLabel_2 = QtWidgets.QLabel(self.PointsGroupBox)
         self.batsmen_noLabel_2.setStyleSheet("color : rgb(0, 85, 255)")
         self.batsmen_noLabel_2.setAlignment(QtCore.Qt.AlignCenter)
@@ -132,6 +147,7 @@ class Ui_MainWindow(object):
         self.PointsDisplayLayout.addWidget(self.batsmen_noLabel_2)
         spacerItem1 = QtWidgets.QSpacerItem(220, 36, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.PointsDisplayLayout.addItem(spacerItem1)
+
         self.pointsUsed_textlabel = QtWidgets.QLabel(self.PointsGroupBox)
         font = QtGui.QFont()
         font.setBold(True)
@@ -139,6 +155,7 @@ class Ui_MainWindow(object):
         self.pointsUsed_textlabel.setFont(font)
         self.pointsUsed_textlabel.setObjectName("pointsUsed_textlabel")
         self.PointsDisplayLayout.addWidget(self.pointsUsed_textlabel)
+
         self.batsmen_noLabel_3 = QtWidgets.QLabel(self.PointsGroupBox)
         self.batsmen_noLabel_3.setStyleSheet("color : rgb(0, 85, 255)")
         self.batsmen_noLabel_3.setAlignment(QtCore.Qt.AlignCenter)
@@ -146,10 +163,12 @@ class Ui_MainWindow(object):
         self.PointsDisplayLayout.addWidget(self.batsmen_noLabel_3)
         spacerItem2 = QtWidgets.QSpacerItem(220, 36, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.PointsDisplayLayout.addItem(spacerItem2)
+        #Player Selection Layout
         self.TopverticalLayout.addWidget(self.PointsGroupBox)
         self.PlayerSelection_Layout = QtWidgets.QHBoxLayout()
         self.PlayerSelection_Layout.setSizeConstraint(QtWidgets.QLayout.SetFixedSize)
         self.PlayerSelection_Layout.setObjectName("PlayerSelection_Layout")
+
         self.availablePlayer_groupBox = QtWidgets.QGroupBox(self.main_centralwidget)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
@@ -164,23 +183,23 @@ class Ui_MainWindow(object):
         self.availablePlayer_groupBox.setObjectName("availablePlayer_groupBox")
         self.layoutWidget = QtWidgets.QWidget(self.availablePlayer_groupBox)
         self.layoutWidget.setGeometry(QtCore.QRect(10, 11, 251, 31))
-        self.layoutWidget.setObjectName("layoutWidget")
+        self.layoutWidget.setObjectName("layoutWidget")                                             #
         self.PlayerCatagorylLayout = QtWidgets.QHBoxLayout(self.layoutWidget)
         self.PlayerCatagorylLayout.setContentsMargins(0, 0, 0, 0)
         self.PlayerCatagorylLayout.setObjectName("PlayerCatagorylLayout")
-        self.BATradioButton = QtWidgets.QRadioButton(self.layoutWidget)
+        self.BATradioButton = QtWidgets.QRadioButton(self.layoutWidget)                             ##
         self.BATradioButton.setObjectName("BATradioButton")
         self.PlayerCatagorylLayout.addWidget(self.BATradioButton)
-        self.BOWradioButton = QtWidgets.QRadioButton(self.layoutWidget)
+        self.BOWradioButton = QtWidgets.QRadioButton(self.layoutWidget)                             ##
         self.BOWradioButton.setObjectName("BOWradioButton")
         self.PlayerCatagorylLayout.addWidget(self.BOWradioButton)
-        self.ARradioButton = QtWidgets.QRadioButton(self.layoutWidget)
+        self.ARradioButton = QtWidgets.QRadioButton(self.layoutWidget)                              ##
         self.ARradioButton.setObjectName("ARradioButton")
         self.PlayerCatagorylLayout.addWidget(self.ARradioButton)
-        self.WKradioButton = QtWidgets.QRadioButton(self.layoutWidget)
+        self.WKradioButton = QtWidgets.QRadioButton(self.layoutWidget)                              ##
         self.WKradioButton.setObjectName("WKradioButton")
         self.PlayerCatagorylLayout.addWidget(self.WKradioButton)
-        self.AvailablePlayer_listWidget = QtWidgets.QListWidget(self.availablePlayer_groupBox)
+        self.AvailablePlayer_listWidget = QtWidgets.QListWidget(self.availablePlayer_groupBox)      #
         self.AvailablePlayer_listWidget.setGeometry(QtCore.QRect(10, 51, 250, 450))
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
@@ -195,6 +214,7 @@ class Ui_MainWindow(object):
         self.AvailablePlayer_listWidget.setStyleSheet("color : rgb(0, 85, 255)")
         self.AvailablePlayer_listWidget.setObjectName("AvailablePlayer_listWidget")
         self.PlayerSelection_Layout.addWidget(self.availablePlayer_groupBox)
+
         self.centreArrow_groupBox = QtWidgets.QGroupBox(self.main_centralwidget)
         self.centreArrow_groupBox.setEnabled(False)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Preferred)
@@ -215,6 +235,7 @@ class Ui_MainWindow(object):
         self.arrow_label.setAlignment(QtCore.Qt.AlignCenter)
         self.arrow_label.setObjectName("arrow_label")
         self.PlayerSelection_Layout.addWidget(self.centreArrow_groupBox)
+
         self.usedPlayer_groupBox = QtWidgets.QGroupBox(self.main_centralwidget)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
@@ -231,7 +252,7 @@ class Ui_MainWindow(object):
         self.team_horizontalLayout.setSizeConstraint(QtWidgets.QLayout.SetDefaultConstraint)
         self.team_horizontalLayout.setContentsMargins(0, 0, 0, 0)
         self.team_horizontalLayout.setObjectName("team_horizontalLayout")
-        self.teamName_textLabel = QtWidgets.QLabel(self.layoutWidget1)
+        self.teamName_textLabel = QtWidgets.QLabel(self.layoutWidget1)                              #
         font = QtGui.QFont()
         font.setBold(True)
         font.setWeight(75)
@@ -239,7 +260,7 @@ class Ui_MainWindow(object):
         self.teamName_textLabel.setAlignment(QtCore.Qt.AlignCenter)
         self.teamName_textLabel.setObjectName("teamName_textLabel")
         self.team_horizontalLayout.addWidget(self.teamName_textLabel)
-        self.teamName_Label = QtWidgets.QLabel(self.layoutWidget1)
+        self.teamName_Label = QtWidgets.QLabel(self.layoutWidget1)                                  #
         font = QtGui.QFont()
         font.setBold(True)
         font.setWeight(75)
@@ -248,7 +269,7 @@ class Ui_MainWindow(object):
         self.teamName_Label.setAlignment(QtCore.Qt.AlignCenter)
         self.teamName_Label.setObjectName("teamName_Label")
         self.team_horizontalLayout.addWidget(self.teamName_Label)
-        self.UsedPlayer_listWidget = QtWidgets.QListWidget(self.usedPlayer_groupBox)
+        self.UsedPlayer_listWidget = QtWidgets.QListWidget(self.usedPlayer_groupBox)                #
         self.UsedPlayer_listWidget.setGeometry(QtCore.QRect(10, 51, 250, 450))
         font = QtGui.QFont()
         font.setBold(True)
@@ -262,6 +283,7 @@ class Ui_MainWindow(object):
         spacerItem3 = QtWidgets.QSpacerItem(36, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.horizontalLayout_3.addItem(spacerItem3)
         MainWindow.setCentralWidget(self.main_centralwidget)
+
         self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 610, 26))
         self.menubar.setObjectName("menubar")
@@ -287,6 +309,26 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
+        #NEW Team
+        self.actionNew_Team.triggered.connect(self.newClicked)
+        self.bat = 0
+        self.bow = 0
+        self.ar = 0
+        self.wk = 0
+        self.availpoints = 1000
+        self.usedpoints = 0
+        self.totalplayer = 0
+        #SAVE Team
+        self.actionSAVE_Team.triggered.connect(self.saveClicked)
+        #Radio Buttons
+        self.BATradioButton.toggled.connect(lambda: self.fillList("BAT"))
+        self.BOWradioButton.toggled.connect(lambda: self.fillList("BOW"))
+        self.ARradioButton.toggled.connect(lambda: self.fillList("AR"))
+        self.WKradioButton.toggled.connect(lambda: self.fillList("WK"))
+        #Populate Right Box
+        self.AvailablePlayer_listWidget.itemDoubleClicked.connect(self.populateRightBox)
+        #Depopulate Right Box
+        self.UsedPlayer_listWidget.itemDoubleClicked.connect(self.dePopulateRightBox)
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
@@ -312,17 +354,140 @@ class Ui_MainWindow(object):
         self.teamName_textLabel.setText(_translate("MainWindow", "Team Name"))
         self.teamName_Label.setText(_translate("MainWindow", "Displayed Here"))
         self.menuManage_Teams.setTitle(_translate("MainWindow", "Manage Teams"))
+
         self.actionNew_Team.setText(_translate("MainWindow", "NEW Team"))
+        self.actionNew_Team.setShortcut(_translate("MainWindow", "Ctrl+N"))
+        self.actionNew_Team.setStatusTip(_translate("MainWindow", "Create a new team"))
+
         self.actionOPEN_Team.setText(_translate("MainWindow", "OPEN Team"))
+        self.actionOPEN_Team.setShortcut(_translate("MainWindow", "Ctrl+O"))
+        self.actionOPEN_Team.setStatusTip(_translate("MainWindow", "Open an existing team"))
+
         self.actionSAVE_Team.setText(_translate("MainWindow", "SAVE Team"))
+        self.actionSAVE_Team.setShortcut(_translate("MainWindow", "Ctrl+S"))
+        self.actionSAVE_Team.setStatusTip(_translate("MainWindow", "Save the team"))
+
         self.actionEVALUATE_Team.setText(_translate("MainWindow", "EVALUATE Team"))
+        self.actionEVALUATE_Team.setShortcut(_translate("MainWindow", "Ctrl+E"))
+        self.actionEVALUATE_Team.setStatusTip(_translate("MainWindow", "Calculate team score"))
+    
+    def updateStatus(self):
+        self.batsmen_noLabel.setText(str(self.bat))
+        self.bowler_noLabel.setText(str(self.bow))
+        self.allrounder_noLabel.setText(str(self.ar))
+        self.wicketkeeper_noLabel.setText(str(self.wk))
+        self.batsmen_noLabel_2.setText(str(self.availpoints))
+        self.batsmen_noLabel_3.setText(str(self.usedpoints))
+
+    def showPOPUp(self, msg, icn):
+        msg_box = QtWidgets.QMessageBox()
+        msg_box.setWindowTitle("FantasyCricket-Python")
+        msg_box.setText(msg)
+        msg_box.setIcon(icn)
+        x = msg_box.exec_()
+
+    def gameLogic(self):
+        msg = ""
+        if self.bat > 5:msg = "At max, 5 batsmen can be picked!"
+        if self.bow > 5:msg = "At max, 5 bowler can be picked!"
+        if self.ar > 3:msg = "At max, 3 Allrounder can be picked!"
+        if self.wk > 1:msg = "At max, 1 wicket-keeper can be picked!"
+        if self.totalplayer > 11:msg = "A total of 11 players can be picked!"
+        if self.availpoints < 0:msg = "No Points Available!"
+        if msg == "":
+            return True
+        else:
+            self.showPOPUp(msg, QtWidgets.QMessageBox.Critical)
+            return False
+    
+    def newClicked(self):
+        self.main_centralwidget.setEnabled(True)
+        self.updateStatus()
+        text, ok = QtWidgets.QInputDialog.getText(MainWindow, 'New Team', 'Enter name of team:')
+        if ok:
+            self.teamName_Label.setText(str(text))
+
+    def saveClicked(self):
+        if self.totalplayer != 11:
+            self.showPOPUp("Insufficient players", QtWidgets.QMessageBox.Critical)
+            return
+
+    def fillList(self, ctgr):
+        self.AvailablePlayer_listWidget.clear()
+        cur = conFantasyDB.cursor()
+        sql = "SELECT player FROM stats WHERE ctg = '"+ctgr+"';"
+        cur.execute(sql)
+        result = cur.fetchall()
+        selected = []
+        for i in range(self.UsedPlayer_listWidget.count()):
+            selected.append(self.UsedPlayer_listWidget.item(i).text())
+        for record in result:
+            if record[0] not in selected:
+                self.AvailablePlayer_listWidget.addItem(record[0])
+
+    def populateRightBox(self, item):
+        if self.BATradioButton.isChecked()==True:self.bat += 1
+        if self.BOWradioButton.isChecked()==True:self.bow += 1
+        if self.ARradioButton.isChecked()==True:self.ar += 1
+        if self.WKradioButton.isChecked()==True:self.wk += 1
+        #updating points
+        cur = conFantasyDB.cursor()
+        sql = "SELECT player,value FROM stats WHERE player = '"+item.text()+"';"
+        cur.execute(sql)
+        result = cur.fetchone()
+        self.availpoints -= result[1]
+        self.usedpoints += result[1]
+        self.totalplayer += 1
+        #checking criteria
+        ret = self.gameLogic()
+        if ret == False:
+            if self.BATradioButton.isChecked()==True:self.bat -= 1
+            if self.BOWradioButton.isChecked()==True:self.bow -= 1
+            if self.ARradioButton.isChecked()==True:self.ar -= 1
+            if self.WKradioButton.isChecked()==True:self.wk -= 1
+            self.availpoints += result[1]
+            self.usedpoints -= result[1]
+            self.totalplayer -= 1
+        else:
+            #updating left and right box
+            self.AvailablePlayer_listWidget.takeItem(self.AvailablePlayer_listWidget.row(item))
+            self.UsedPlayer_listWidget.addItem(item.text())  
+            self.updateStatus()
+
+    def dePopulateRightBox(self,item):
+        cur = conFantasyDB.cursor()
+        sql = "SELECT player,ctg, value FROM stats WHERE player = '"+item.text()+"';"
+        cur.execute(sql)
+        result = cur.fetchone()
+        if(result[1]=='BAT'):
+            self.BATradioButton.setChecked(True)
+            self.bat -= 1
+        if(result[1]=='BOW'):
+            self.BOWradioButton.setChecked(True)
+            self.bow -= 1
+        if(result[1]=='AR'):
+            self.ARradioButton.setChecked(True)
+            self.ar -= 1
+        if(result[1]=='WK'):
+            self.WKradioButton.setChecked(True)
+            self.wk -= 1
+        #updating points
+        self.availpoints += result[2]
+        self.usedpoints -= result[2]
+        self.totalplayer -= 1
+        self.updateStatus()
+        #updating left and right box
+        self.UsedPlayer_listWidget.takeItem(self.UsedPlayer_listWidget.row(item))
+        self.AvailablePlayer_listWidget.addItem(item.text())
 
 
 if __name__ == "__main__":
     import sys
+    conFantasyDB = sqlite3.connect("FanyasyCricketDB.db")
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
     ui = Ui_MainWindow()
     ui.setupUi(MainWindow)
     MainWindow.show()
     sys.exit(app.exec_())
+    conFantasyDB.close()
