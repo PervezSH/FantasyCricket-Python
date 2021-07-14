@@ -29,6 +29,7 @@ class Ui_Dialog(object):
         self.horizontalLayout.setObjectName("horizontalLayout")
         spacerItem = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.horizontalLayout.addItem(spacerItem)
+
         self.SelectTeam_comboBox = QtWidgets.QComboBox(Dialog)
         self.SelectTeam_comboBox.setMinimumSize(QtCore.QSize(200, 25))
         self.SelectTeam_comboBox.setObjectName("SelectTeam_comboBox")
@@ -36,6 +37,7 @@ class Ui_Dialog(object):
         self.horizontalLayout.addWidget(self.SelectTeam_comboBox)
         spacerItem1 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.horizontalLayout.addItem(spacerItem1)
+
         self.SelectMatch_comboBox = QtWidgets.QComboBox(Dialog)
         self.SelectMatch_comboBox.setMinimumSize(QtCore.QSize(200, 25))
         self.SelectMatch_comboBox.setObjectName("SelectMatch_comboBox")
@@ -44,6 +46,7 @@ class Ui_Dialog(object):
         spacerItem2 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.horizontalLayout.addItem(spacerItem2)
         self.verticalLayout.addLayout(self.horizontalLayout)
+
         self.line = QtWidgets.QFrame(Dialog)
         self.line.setFrameShape(QtWidgets.QFrame.HLine)
         self.line.setFrameShadow(QtWidgets.QFrame.Sunken)
@@ -53,6 +56,7 @@ class Ui_Dialog(object):
         self.horizontalLayout_3.setObjectName("horizontalLayout_3")
         spacerItem3 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.horizontalLayout_3.addItem(spacerItem3)
+
         self.Player_label = QtWidgets.QLabel(Dialog)
         self.Player_label.setMinimumSize(QtCore.QSize(100, 20))
         font = QtGui.QFont()
@@ -65,6 +69,7 @@ class Ui_Dialog(object):
         self.horizontalLayout_3.addItem(spacerItem4)
         spacerItem5 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.horizontalLayout_3.addItem(spacerItem5)
+
         self.PointsText_label = QtWidgets.QLabel(Dialog)
         self.PointsText_label.setMinimumSize(QtCore.QSize(50, 20))
         font = QtGui.QFont()
@@ -73,6 +78,7 @@ class Ui_Dialog(object):
         self.PointsText_label.setFont(font)
         self.PointsText_label.setObjectName("PointsText_label")
         self.horizontalLayout_3.addWidget(self.PointsText_label)
+
         self.Points_label = QtWidgets.QLabel(Dialog)
         self.Points_label.setMinimumSize(QtCore.QSize(50, 20))
         font = QtGui.QFont()
@@ -92,16 +98,18 @@ class Ui_Dialog(object):
         self.horizontalLayout_2.setObjectName("horizontalLayout_2")
         spacerItem8 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.horizontalLayout_2.addItem(spacerItem8)
+
         self.Player_listWidget = QtWidgets.QListWidget(Dialog)
         self.Player_listWidget.setMinimumSize(QtCore.QSize(250, 300))
         self.Player_listWidget.setObjectName("Player_listWidget")
         self.horizontalLayout_2.addWidget(self.Player_listWidget)
         spacerItem9 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.horizontalLayout_2.addItem(spacerItem9)
-        self.Team_listWidget = QtWidgets.QListWidget(Dialog)
-        self.Team_listWidget.setMinimumSize(QtCore.QSize(250, 300))
-        self.Team_listWidget.setObjectName("Team_listWidget")
-        self.horizontalLayout_2.addWidget(self.Team_listWidget)
+
+        self.Points_listWidget = QtWidgets.QListWidget(Dialog)
+        self.Points_listWidget.setMinimumSize(QtCore.QSize(250, 300))
+        self.Points_listWidget.setObjectName("Points_listWidget")
+        self.horizontalLayout_2.addWidget(self.Points_listWidget)
         spacerItem10 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.horizontalLayout_2.addItem(spacerItem10)
         self.verticalLayout.addLayout(self.horizontalLayout_2)
@@ -109,6 +117,7 @@ class Ui_Dialog(object):
         self.horizontalLayout_4.setObjectName("horizontalLayout_4")
         spacerItem11 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.horizontalLayout_4.addItem(spacerItem11)
+
         self.Calculate_pushButton = QtWidgets.QPushButton(Dialog)
         self.Calculate_pushButton.setMinimumSize(QtCore.QSize(150, 30))
         self.Calculate_pushButton.setObjectName("Calculate_pushButton")
@@ -120,9 +129,16 @@ class Ui_Dialog(object):
         self.retranslateUi(Dialog)
         QtCore.QMetaObject.connectSlotsByName(Dialog)
 
+        #Pupulating ComboBoxes
+        self.populateTeamComboBox()
+        self.SelectMatch_comboBox.addItem("match")
+
+        #Calculate Score
+        self.Calculate_pushButton.clicked.connect(self.calculateScore)
+
     def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
-        Dialog.setWindowTitle(_translate("Dialog", "Evaluate Score"))
+        Dialog.setWindowTitle(_translate("Dialog", "Evaluate Team"))
         self.HeaderText_label.setText(_translate("Dialog", "Evaluate the Performance of your Fantasy Team"))
         self.SelectTeam_comboBox.setItemText(0, _translate("Dialog", "Select Team"))
         self.SelectMatch_comboBox.setItemText(0, _translate("Dialog", "Select Match"))
@@ -131,6 +147,85 @@ class Ui_Dialog(object):
         self.Points_label.setText(_translate("Dialog", "###"))
         self.Calculate_pushButton.setText(_translate("Dialog", "Calculate Score"))
 
+    def populateTeamComboBox(self):
+        cur = conFantasyDB.cursor()
+        sql = "SELECT name FROM teams"
+        cur.execute(sql)
+        record = cur.fetchall()
+        teams = []
+        for row in record:
+            teams.append(row[0])
+        self.SelectTeam_comboBox.addItems(teams)
+
+    def battingPoint(self, runs, fours, sixes, balls):
+        points = runs//2
+        if runs>=50:
+            points += 5
+            if runs>=100:
+                points += 10
+        if balls != 0:
+            strikeRate = runs/balls*100
+        else:
+            strikeRate = 0
+        if strikeRate>= 80 and strikeRate<=100:
+            points += 2
+        elif strikeRate >100:
+            points += 4
+        points += fours
+        points += sixes*2
+        return points
+
+    def bowlingPoint(self, wkts, bowled, runs):
+        overs = bowled/6
+        points = 10*wkts
+        if wkts>=3:
+            points += 5
+            if wkts >= 5:
+                points += 10
+        if overs != 0:
+            ecoRate = runs/overs
+        else:
+            ecoRate  =0
+        if ecoRate<2:
+            points += 10
+        elif ecoRate>=2 and ecoRate < 3.5:
+            points += 7
+        elif ecoRate >= 3.5 and ecoRate <= 4.5:
+            points += 4
+        return points
+
+    def fieldingPoint(self, field):
+        points = 10*field
+        return points
+    
+    def calculateScore(self):
+        if self.SelectTeam_comboBox.currentText() == "Select Team" :
+            return
+        self.Player_listWidget.clear()
+        self.Points_listWidget.clear()
+        teamName = self.SelectTeam_comboBox.currentText()
+        cur = conFantasyDB.cursor()
+        sql = "SELECT players FROM teams WHERE name = '"+teamName+"';"
+        cur.execute(sql)
+        record = cur.fetchone()
+        selcted = []
+        selcted = record[0].split(',')
+        self.Player_listWidget.addItems(selcted)
+        if self.SelectMatch_comboBox.currentText() != "Select Match":
+            matchName = self.SelectMatch_comboBox.currentText()
+            totalPoints = 0
+            for i in range(self.Player_listWidget.count()):
+                playerName = self.Player_listWidget.item(i).text()
+                sql = "SELECT * FROM "+matchName+" WHERE player = '"+playerName+"';"
+                cur.execute(sql)
+                row = cur.fetchone()
+                batScore = self.battingPoint(row[1], row[3], row[4], row[2])
+                bowlScore = self.bowlingPoint(row[8], row[5], row[7])
+                fieldScore = self.fieldingPoint(row[9]+row[10]+row[11])
+                totalScore = batScore + bowlScore + fieldScore
+                totalPoints += totalScore
+                self.Points_listWidget.addItem(str(totalScore))
+            self.Points_label.setText(str(totalPoints))
 
 
 class Ui_MainWindow(object):
