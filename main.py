@@ -11,6 +11,128 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 import sqlite3
 
+
+class Ui_Dialog(object):
+    def setupUi(self, Dialog):
+        Dialog.setObjectName("Dialog")
+        Dialog.resize(544, 455)
+        self.verticalLayout = QtWidgets.QVBoxLayout(Dialog)
+        self.verticalLayout.setObjectName("verticalLayout")
+        self.HeaderText_label = QtWidgets.QLabel(Dialog)
+        font = QtGui.QFont()
+        font.setPointSize(9)
+        self.HeaderText_label.setFont(font)
+        self.HeaderText_label.setAlignment(QtCore.Qt.AlignCenter)
+        self.HeaderText_label.setObjectName("HeaderText_label")
+        self.verticalLayout.addWidget(self.HeaderText_label)
+        self.horizontalLayout = QtWidgets.QHBoxLayout()
+        self.horizontalLayout.setObjectName("horizontalLayout")
+        spacerItem = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout.addItem(spacerItem)
+        self.SelectTeam_comboBox = QtWidgets.QComboBox(Dialog)
+        self.SelectTeam_comboBox.setMinimumSize(QtCore.QSize(200, 25))
+        self.SelectTeam_comboBox.setObjectName("SelectTeam_comboBox")
+        self.SelectTeam_comboBox.addItem("")
+        self.horizontalLayout.addWidget(self.SelectTeam_comboBox)
+        spacerItem1 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout.addItem(spacerItem1)
+        self.SelectMatch_comboBox = QtWidgets.QComboBox(Dialog)
+        self.SelectMatch_comboBox.setMinimumSize(QtCore.QSize(200, 25))
+        self.SelectMatch_comboBox.setObjectName("SelectMatch_comboBox")
+        self.SelectMatch_comboBox.addItem("")
+        self.horizontalLayout.addWidget(self.SelectMatch_comboBox)
+        spacerItem2 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout.addItem(spacerItem2)
+        self.verticalLayout.addLayout(self.horizontalLayout)
+        self.line = QtWidgets.QFrame(Dialog)
+        self.line.setFrameShape(QtWidgets.QFrame.HLine)
+        self.line.setFrameShadow(QtWidgets.QFrame.Sunken)
+        self.line.setObjectName("line")
+        self.verticalLayout.addWidget(self.line)
+        self.horizontalLayout_3 = QtWidgets.QHBoxLayout()
+        self.horizontalLayout_3.setObjectName("horizontalLayout_3")
+        spacerItem3 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout_3.addItem(spacerItem3)
+        self.Player_label = QtWidgets.QLabel(Dialog)
+        self.Player_label.setMinimumSize(QtCore.QSize(100, 20))
+        font = QtGui.QFont()
+        font.setBold(True)
+        font.setWeight(75)
+        self.Player_label.setFont(font)
+        self.Player_label.setObjectName("Player_label")
+        self.horizontalLayout_3.addWidget(self.Player_label)
+        spacerItem4 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout_3.addItem(spacerItem4)
+        spacerItem5 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout_3.addItem(spacerItem5)
+        self.PointsText_label = QtWidgets.QLabel(Dialog)
+        self.PointsText_label.setMinimumSize(QtCore.QSize(50, 20))
+        font = QtGui.QFont()
+        font.setBold(True)
+        font.setWeight(75)
+        self.PointsText_label.setFont(font)
+        self.PointsText_label.setObjectName("PointsText_label")
+        self.horizontalLayout_3.addWidget(self.PointsText_label)
+        self.Points_label = QtWidgets.QLabel(Dialog)
+        self.Points_label.setMinimumSize(QtCore.QSize(50, 20))
+        font = QtGui.QFont()
+        font.setBold(True)
+        font.setWeight(75)
+        self.Points_label.setFont(font)
+        self.Points_label.setStyleSheet("color:rgb(1, 141, 200)")
+        self.Points_label.setAlignment(QtCore.Qt.AlignCenter)
+        self.Points_label.setObjectName("Points_label")
+        self.horizontalLayout_3.addWidget(self.Points_label)
+        spacerItem6 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout_3.addItem(spacerItem6)
+        spacerItem7 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout_3.addItem(spacerItem7)
+        self.verticalLayout.addLayout(self.horizontalLayout_3)
+        self.horizontalLayout_2 = QtWidgets.QHBoxLayout()
+        self.horizontalLayout_2.setObjectName("horizontalLayout_2")
+        spacerItem8 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout_2.addItem(spacerItem8)
+        self.Player_listWidget = QtWidgets.QListWidget(Dialog)
+        self.Player_listWidget.setMinimumSize(QtCore.QSize(250, 300))
+        self.Player_listWidget.setObjectName("Player_listWidget")
+        self.horizontalLayout_2.addWidget(self.Player_listWidget)
+        spacerItem9 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout_2.addItem(spacerItem9)
+        self.Team_listWidget = QtWidgets.QListWidget(Dialog)
+        self.Team_listWidget.setMinimumSize(QtCore.QSize(250, 300))
+        self.Team_listWidget.setObjectName("Team_listWidget")
+        self.horizontalLayout_2.addWidget(self.Team_listWidget)
+        spacerItem10 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout_2.addItem(spacerItem10)
+        self.verticalLayout.addLayout(self.horizontalLayout_2)
+        self.horizontalLayout_4 = QtWidgets.QHBoxLayout()
+        self.horizontalLayout_4.setObjectName("horizontalLayout_4")
+        spacerItem11 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout_4.addItem(spacerItem11)
+        self.Calculate_pushButton = QtWidgets.QPushButton(Dialog)
+        self.Calculate_pushButton.setMinimumSize(QtCore.QSize(150, 30))
+        self.Calculate_pushButton.setObjectName("Calculate_pushButton")
+        self.horizontalLayout_4.addWidget(self.Calculate_pushButton)
+        spacerItem12 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout_4.addItem(spacerItem12)
+        self.verticalLayout.addLayout(self.horizontalLayout_4)
+
+        self.retranslateUi(Dialog)
+        QtCore.QMetaObject.connectSlotsByName(Dialog)
+
+    def retranslateUi(self, Dialog):
+        _translate = QtCore.QCoreApplication.translate
+        Dialog.setWindowTitle(_translate("Dialog", "Evaluate Score"))
+        self.HeaderText_label.setText(_translate("Dialog", "Evaluate the Performance of your Fantasy Team"))
+        self.SelectTeam_comboBox.setItemText(0, _translate("Dialog", "Select Team"))
+        self.SelectMatch_comboBox.setItemText(0, _translate("Dialog", "Select Match"))
+        self.Player_label.setText(_translate("Dialog", "Players"))
+        self.PointsText_label.setText(_translate("Dialog", "Points"))
+        self.Points_label.setText(_translate("Dialog", "###"))
+        self.Calculate_pushButton.setText(_translate("Dialog", "Calculate Score"))
+
+
+
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
@@ -318,8 +440,12 @@ class Ui_MainWindow(object):
         self.availpoints = 1000
         self.usedpoints = 0
         self.totalplayer = 0
+        #OPEN Team
+        self.actionOPEN_Team.triggered.connect(self.openClicked)
         #SAVE Team
         self.actionSAVE_Team.triggered.connect(self.saveClicked)
+        #EVALUATE Team
+        self.actionEVALUATE_Team.triggered.connect(self.evaluateClicked)
         #Radio Buttons
         self.BATradioButton.toggled.connect(lambda: self.fillList("BAT"))
         self.BOWradioButton.toggled.connect(lambda: self.fillList("BOW"))
@@ -332,7 +458,7 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "FantasyCricket-Python"))
         self.yourSelctionGroupBox.setTitle(_translate("MainWindow", "Your Selections"))
         self.batsmen_textLabel.setText(_translate("MainWindow", "Batsmen (BAT)"))
         self.batsmen_noLabel.setText(_translate("MainWindow", "##"))
@@ -407,10 +533,69 @@ class Ui_MainWindow(object):
         if ok:
             self.teamName_Label.setText(str(text))
 
+    def openClicked(self):
+        self.main_centralwidget.setEnabled(True)
+        self.UsedPlayer_listWidget.clear()
+        self.updateStatus()
+        cur = conFantasyDB.cursor()
+        sql = "SELECT name FROM teams"
+        cur.execute(sql)
+        record = cur.fetchall()
+        teams = []
+        for row in record:
+            teams.append(row[0])
+        team, ok = QtWidgets.QInputDialog.getItem(MainWindow, "Fantasy-Cricket Python","Choose a team", teams, 0, False)
+        if ok and team:
+            self.teamName_Label.setText(team)
+        else:
+            return
+        sql = "SELECT players, value FROM teams WHERE name ='"+team+"';"
+        cur.execute(sql)
+        record = cur.fetchone()
+        selelctedList = record[0].split(',')
+        self.UsedPlayer_listWidget.addItems(selelctedList)
+        #updating points
+        self.usedpoints = record[1]
+        self.availpoints -= self.usedpoints
+        #Updating Status
+        for i in range (self.UsedPlayer_listWidget.count()):
+            sql = "SELECT ctg FROM stats WHERE player = '"+self.UsedPlayer_listWidget.item(i).text()+"';"
+            cur.execute(sql)
+            record = cur.fetchone()
+            if record[0] == "BAT":self.bat +=1
+            if record[0] == "BOW":self.bow +=1
+            if record[0] == "AR":self.ar +=1
+            if record[0] == "WK":self.wk +=1
+        self.totalplayer = self.bat + self.bow + self.ar + self.wk
+        self.updateStatus()
+        
     def saveClicked(self):
         if self.totalplayer != 11:
             self.showPOPUp("Insufficient players", QtWidgets.QMessageBox.Critical)
             return
+        selected = ""
+        c = self.UsedPlayer_listWidget.count()
+        for i in range(c):
+            selected += self.UsedPlayer_listWidget.item(i).text()
+            if i < c-1:
+                selected += ","
+
+        sql="INSERT INTO teams (name, players, value) VALUES ('"+self.teamName_Label.text()+"','"+selected+"','"+str(self.usedpoints)+"');"
+        try:
+            cur = conFantasyDB.cursor()
+            cur.execute(sql)
+            conFantasyDB.commit()
+            self.showPOPUp("Team added successfully!", QtWidgets.QMessageBox.NoIcon)
+        except Exception as e:
+            print(e)
+            self.showPOPUp("Error!", QtWidgets.QMessageBox.Critical)
+            conFantasyDB.rollback()
+
+    def evaluateClicked(self):
+        self.Dialog = QtWidgets.QDialog()
+        self.ui = Ui_Dialog()
+        self.ui.setupUi(self.Dialog)
+        self.Dialog.show()
 
     def fillList(self, ctgr):
         self.AvailablePlayer_listWidget.clear()
@@ -479,6 +664,7 @@ class Ui_MainWindow(object):
         #updating left and right box
         self.UsedPlayer_listWidget.takeItem(self.UsedPlayer_listWidget.row(item))
         self.AvailablePlayer_listWidget.addItem(item.text())
+
 
 
 if __name__ == "__main__":
